@@ -1,15 +1,20 @@
-﻿using Amazon;
+﻿using System.Collections.Generic;
+using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.Internal;
 using Amazon.Runtime;
 using Dynamo.Abstractions;
 using Dynamo.Repositories;
+using Imagegram.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace Imagegram;
 
@@ -26,7 +31,34 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(c =>
+        {
+            c.AddSecurityDefinition("Basic", new OpenApiSecurityScheme
+            {
+                Description = "Basic auth added to authorization header",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Scheme = "basic",
+                Type = SecuritySchemeType.Http
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference {Type = ReferenceType.SecurityScheme, Id = "Basic"}
+                    },
+                    new List<string>()
+                }
+            });
+        });
+        
+        services.AddAuthentication("Test")
+            .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", _ => { });
+        services.AddHttpContextAccessor();
+ 
+        services.AddAuthorization();
 
         ConfigureInfrastructure(services);
         ConfigurePersistence(services);
@@ -56,6 +88,7 @@ public class Startup
 
         app.UseRouting();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
