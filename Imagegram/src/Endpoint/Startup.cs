@@ -1,0 +1,73 @@
+﻿using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.Internal;
+using Amazon.Runtime;
+using Dynamo.Abstractions;
+using Dynamo.Repositories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Imagegram;
+
+public class Startup
+{
+    public Startup(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    private IConfiguration _configuration { get; }
+
+    // This method gets called by the runtime. Use this method to add services to the container
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers();
+        services.AddSwaggerGen();
+
+        ConfigureInfrastructure(services);
+        ConfigurePersistence(services);
+    }
+
+    private void ConfigureInfrastructure(IServiceCollection services)
+    {
+        AWSCredentials credentials = new BasicAWSCredentials("AKIAQOE77FP7KIB3O2OZ", "xXG1ySfajCizJJbBY0xd6GO9GKXEWr9iu1efOPZa");
+        services.AddScoped<IAmazonDynamoDB>(_ => 
+            new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1));
+    }
+
+    private void ConfigurePersistence(IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapGet("/", async context =>
+            {
+                await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
+            });
+        });
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+}

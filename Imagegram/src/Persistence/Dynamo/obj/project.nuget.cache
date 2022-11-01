@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "bcpZy3EQLZH6RFPYORxEIqWQpWMEzDydjsaxSTX4buWAY4auTUVtcoeLmvGO8+IC+s5oZvU982vQtZcsDrHWwA==",
+  "success": true,
+  "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj",
+  "expectedPackageFiles": [
+    "/Users/belovanas/.nuget/packages/amazon.lambda.core/2.1.0/amazon.lambda.core.2.1.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/amazon.lambda.dynamodbevents/2.1.1/amazon.lambda.dynamodbevents.2.1.1.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.3.0/amazon.lambda.serialization.systemtextjson.2.3.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/awssdk.core/3.7.12.17/awssdk.core.3.7.12.17.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/awssdk.dynamodbv2/3.7.3.64/awssdk.dynamodbv2.3.7.3.64.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.6/microsoft.netcore.app.crossgen2.osx-x64.6.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

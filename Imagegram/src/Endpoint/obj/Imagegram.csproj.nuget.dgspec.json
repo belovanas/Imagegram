@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Imagegram/Imagegram.csproj": {}
+  },
+  "projects": {
+    "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Imagegram/Imagegram.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Imagegram/Imagegram.csproj",
+        "projectName": "Imagegram",
+        "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Imagegram/Imagegram.csproj",
+        "packagesPath": "/Users/belovanas/.nuget/packages/",
+        "outputPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Imagegram/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/belovanas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Amazon.Lambda.AspNetCoreServer": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.6, 6.0.6]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
