@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo", "Imagegram\src\Per
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Imagegram\src\Domain\Domain.csproj", "{9C32B79E-3E0F-42C0-ADE2-E049EC7C9538}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S3", "Imagegram\src\Persistence\S3\S3.csproj", "{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{9C32B79E-3E0F-42C0-ADE2-E049EC7C9538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C32B79E-3E0F-42C0-ADE2-E049EC7C9538}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C32B79E-3E0F-42C0-ADE2-E049EC7C9538}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

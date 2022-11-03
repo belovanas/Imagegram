@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8nM02rnlKBI2nBZNOY00t4K9fRYBHNzWXkL1NpaDVDb0Ud+mllcFBTXpYna4UhdZXRqU9Jr3FjMtKfpiPh3fOQ==",
+  "dgSpecHash": "yMon0G2VptcOEwwwYkr/D/Vs4qee4xTXEJHZMGa2rKfXFUzKyB9piNUgwqo1MHlnqKm+Fc2EzBcOmeNRnMjjxQ==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/test/Imagegram.Tests/Imagegram.Tests.csproj",
   "expectedPackageFiles": [
@@ -10,11 +10,13 @@
     "/Users/belovanas/.nuget/packages/amazon.lambda.core/2.1.0/amazon.lambda.core.2.1.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/amazon.lambda.dynamodbevents/2.1.1/amazon.lambda.dynamodbevents.2.1.1.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/amazon.lambda.logging.aspnetcore/3.1.0/amazon.lambda.logging.aspnetcore.3.1.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/amazon.lambda.s3events/3.0.0/amazon.lambda.s3events.3.0.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.3.0/amazon.lambda.serialization.systemtextjson.2.3.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/amazon.lambda.testutilities/2.0.0/amazon.lambda.testutilities.2.0.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/awssdk.core/3.7.100.6/awssdk.core.3.7.100.6.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/awssdk.dynamodbv2/3.7.3.64/awssdk.dynamodbv2.3.7.3.64.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/awssdk.extensions.netcore.setup/3.7.0.1/awssdk.extensions.netcore.setup.3.7.0.1.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/awssdk.s3/3.7.9.35/awssdk.s3.3.7.9.35.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/microsoft.codecoverage/1.0.3/microsoft.codecoverage.1.0.3.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/microsoft.dotnet.platformabstractions/1.0.3/microsoft.dotnet.platformabstractions.1.0.3.nupkg.sha512",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bcpZy3EQLZH6RFPYORxEIqWQpWMEzDydjsaxSTX4buWAY4auTUVtcoeLmvGO8+IC+s5oZvU982vQtZcsDrHWwA==",
+  "dgSpecHash": "sSzonxh+VA4zSpfiX1tFSWRZ6dSbD5QYS7ea/VQWI/ydFAzm+4iz5bkQ+anSnNUce6DdolYeusRx7bQHAU4tjQ==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj",
   "expectedPackageFiles": [

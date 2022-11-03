@@ -23,7 +23,9 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
         },
         "frameworks": {
           "net6.0": {
@@ -78,7 +80,9 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
         },
         "frameworks": {
           "net6.0": {
@@ -86,6 +90,9 @@
             "projectReferences": {
               "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj": {
                 "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj"
+              },
+              "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj": {
+                "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj"
               }
             }
           }
@@ -164,7 +171,9 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
         },
         "frameworks": {
           "net6.0": {
@@ -197,6 +206,87 @@
             "Amazon.Lambda.DynamoDBEvents": {
               "target": "Package",
               "version": "[2.1.1, )"
+            },
+            "Amazon.Lambda.Serialization.SystemTextJson": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Crossgen2.osx-x64",
+              "version": "[6.0.6, 6.0.6]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj",
+        "projectName": "S3",
+        "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj",
+        "packagesPath": "/Users/belovanas/.nuget/packages/",
+        "outputPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/belovanas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.9.35, )"
+            },
+            "Amazon.Lambda.Core": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Amazon.Lambda.S3Events": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             },
             "Amazon.Lambda.Serialization.SystemTextJson": {
               "target": "Package",

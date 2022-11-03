@@ -75,6 +75,15 @@
           "lib/netstandard2.0/Amazon.Lambda.Logging.AspNetCore.dll": {}
         }
       },
+      "Amazon.Lambda.S3Events/3.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Amazon.Lambda.S3Events.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Amazon.Lambda.S3Events.dll": {}
+        }
+      },
       "Amazon.Lambda.Serialization.SystemTextJson/2.3.0": {
         "type": "package",
         "dependencies": {
@@ -133,6 +142,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.7.9.35": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.12.17, 4.0.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
         }
       },
       "Microsoft.CodeCoverage/1.0.3": {
@@ -2468,6 +2489,7 @@
           "AWSSDK.DynamoDBv2": "3.7.3.64",
           "Amazon.Lambda.AspNetCoreServer": "7.2.0",
           "Dynamo": "1.0.0",
+          "S3": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "compile": {
@@ -2479,6 +2501,22 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "S3/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AWSSDK.S3": "3.7.9.35",
+          "Amazon.Lambda.Core": "2.1.0",
+          "Amazon.Lambda.S3Events": "3.0.0",
+          "Amazon.Lambda.Serialization.SystemTextJson": "2.3.0"
+        },
+        "compile": {
+          "bin/placeholder/S3.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/S3.dll": {}
+        }
       }
     }
   },
@@ -2574,6 +2612,19 @@
         "lib/netstandard2.0/Amazon.Lambda.Logging.AspNetCore.xml"
       ]
     },
+    "Amazon.Lambda.S3Events/3.0.0": {
+      "sha512": "fuBVzMnTx6sdcFrF6wDD4wyR5Dy/YN6+bX8QHVE/4hil2si7Y/MQkGXDDPUbH/sAjtZLZ0T6h7DS6guZ1kK0qg==",
+      "type": "package",
+      "path": "amazon.lambda.s3events/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "amazon.lambda.s3events.3.0.0.nupkg.sha512",
+        "amazon.lambda.s3events.nuspec",
+        "lib/netcoreapp3.1/Amazon.Lambda.S3Events.dll",
+        "lib/netcoreapp3.1/Amazon.Lambda.S3Events.xml"
+      ]
+    },
     "Amazon.Lambda.Serialization.SystemTextJson/2.3.0": {
       "sha512": "qgFCDJp5lyUNqCq1z18U7fZ/+rmMyw6RJf9nKfnJrf79YupDj02klQAjxymEYN66NykWXyc68SGkow6fy53hfg==",
       "type": "package",
@@ -2666,6 +2717,33 @@
         "awssdk.extensions.netcore.setup.nuspec",
         "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll",
         "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.pdb"
+      ]
+    },
+    "AWSSDK.S3/3.7.9.35": {
+      "sha512": "XHHKPBcN0kXJKdYW/rteVC6Gk3OsjkdUVUfdmf80qXJ4PPIRqKTbqJV4x26iwcCei3YR1QZ/RS+Wnt6w9UQNkA==",
+      "type": "package",
+      "path": "awssdk.s3/3.7.9.35",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "awssdk.s3.3.7.9.35.nupkg.sha512",
+        "awssdk.s3.nuspec",
+        "lib/net35/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.pdb",
+        "lib/net35/AWSSDK.S3.xml",
+        "lib/net45/AWSSDK.S3.dll",
+        "lib/net45/AWSSDK.S3.pdb",
+        "lib/net45/AWSSDK.S3.xml",
+        "lib/netcoreapp3.1/AWSSDK.S3.dll",
+        "lib/netcoreapp3.1/AWSSDK.S3.pdb",
+        "lib/netcoreapp3.1/AWSSDK.S3.xml",
+        "lib/netstandard2.0/AWSSDK.S3.dll",
+        "lib/netstandard2.0/AWSSDK.S3.pdb",
+        "lib/netstandard2.0/AWSSDK.S3.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "Microsoft.CodeCoverage/1.0.3": {
@@ -7953,6 +8031,11 @@
       "type": "project",
       "path": "../../src/Endpoint/Endpoint.csproj",
       "msbuildProject": "../../src/Endpoint/Endpoint.csproj"
+    },
+    "S3/1.0.0": {
+      "type": "project",
+      "path": "../../src/Persistence/S3/S3.csproj",
+      "msbuildProject": "../../src/Persistence/S3/S3.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7990,7 +8073,9 @@
         "net6.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+        "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
       },
       "frameworks": {
         "net6.0": {

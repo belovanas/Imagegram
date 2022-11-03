@@ -20,5 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Persistence\Dynamo\Dynamo.csproj" />
+    <ProjectReference Include="..\Persistence\S3\S3.csproj" />
   </ItemGroup>
 </Project>
