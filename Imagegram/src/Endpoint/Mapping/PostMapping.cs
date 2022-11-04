@@ -11,6 +11,7 @@ namespace Imagegram.Mapping
             return new()
             {
                 Id = post.Id,
+                ImageLink = post.ImageLink,
                 User = post.User,
                 Caption = post.Caption,
                 CreatedAt = post.CreatedAt,
