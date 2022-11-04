@@ -20,3 +20,12 @@
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/obj/Debug/net6.0/Dynamo.pdb
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/obj/Debug/net6.0/Dynamo.genruntimeconfig.cache
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/obj/Debug/net6.0/ref/Dynamo.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.AspNetCore.Http.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.AspNetCore.Http.Abstractions.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.AspNetCore.Http.Features.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.AspNetCore.WebUtilities.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.Extensions.ObjectPool.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/bin/Debug/net6.0/Microsoft.Net.Http.Headers.dll

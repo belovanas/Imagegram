@@ -1,59 +1,61 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
-using Domain;
+using Amazon.DynamoDBv2.Model;
 using Dynamo.Abstractions;
-using Dynamo.Models;
 
 namespace Dynamo.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DynamoDBContext _context;
+        private readonly IAmazonDynamoDB _client;
+        private const string tableName = "Users";
 
         public UserRepository(IAmazonDynamoDB client)
         {
-            _context = new DynamoDBContext(client);
+            _client = client;
         }
 
-        public async Task Add(User user, CancellationToken ct)
+        public async Task Add(string login, CancellationToken ct)
         {
-            var userDbModel = new UserDbModel
+            var request = new PutItemRequest()
             {
-                Id = Guid.NewGuid().ToString(),
-                Name = user.Name,
-                CreatedAt = DateTime.UtcNow
+                TableName = tableName,
+                Item = new Dictionary<string, AttributeValue>()
+                {
+                    {
+                        "Login", new AttributeValue()
+                        {
+                            S = login
+                        }
+                    },
+                    {
+                        "CreatedAt", new AttributeValue()
+                        {
+                            S = DateTime.Now.ToString()
+                        }
+                    }
+                }
             };
-
-            await _context.SaveAsync(userDbModel, ct);
+            await _client.PutItemAsync(request, ct);
         }
 
-        public async Task<User> GetByName(string name, CancellationToken ct)
+        public async Task<bool> DoesExist(string login, CancellationToken ct)
         {
-            if (string.IsNullOrEmpty(name))
+            var response = await _client.GetItemAsync(new GetItemRequest
             {
-                throw new ArgumentException("User's name should be filled");
-            }
-
-            var scanCondition = new ScanCondition("Name", ScanOperator.Equal, name);
-            
-            var result = await _context.ScanAsync<UserDbModel>(new []{scanCondition})
-                .GetRemainingAsync(ct);
-            if (result is null || !result.Any())
-            {
-                throw new ArgumentException($"Couldn't find user by name {name}");
-            }
-
-            var userDbModel = result.First();
-            return new User
-            {
-                Id = userDbModel.Id,
-                Name = userDbModel.Name
-            };
+                TableName = tableName,
+                Key = new Dictionary<string, AttributeValue>()
+                {
+                    { "Login", new AttributeValue
+                    {
+                        S = login
+                    }}
+                }
+            }, ct);
+            return response.IsItemSet;
         }
     }
 }

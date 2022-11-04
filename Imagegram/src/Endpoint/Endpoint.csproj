@@ -19,6 +19,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Persistence\Dynamo\Dynamo.csproj" />
     <ProjectReference Include="..\Persistence\S3\S3.csproj" />
   </ItemGroup>

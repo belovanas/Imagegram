@@ -46,21 +46,15 @@ namespace Imagegram.Authorization
             var separatorIndex = usernamePassword.IndexOf(':');
             var username = usernamePassword.Substring(0, separatorIndex);
 
-            string userId;
-            try
-            { 
-                var user = await _userRepository.GetByName(username, CancellationToken.None);
-                userId = user.Id;
-            }
-            catch (Exception)
+            var doesExist = await _userRepository.DoesExist(username, CancellationToken.None);
+            if (!doesExist)
             {
                 return AuthenticateResult.Fail($"User {username} wasn't found. Please, register");
             }
-
+            
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.NameIdentifier, userId)
+                new Claim(ClaimTypes.Name, username)
             };
             var identity = new ClaimsIdentity(claims, "Test");
             var principal = new ClaimsPrincipal(identity);

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "twVinug/kh6TaQxZVRJfC8VTz/u9NI+kTBjzsZx7VyXhZI/4paVzL/5ejeD9H+5YVNuixkEnuUatjSBzL5k9wQ==",
+  "dgSpecHash": "kk8Xr3gfsPgB19MLj1hbiQZd0tF+ZrZHZNgHcw3TJact7egr1sE0wIL9auOgRC0N6rHinePpksYG1w2jGVfClg==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj",
   "expectedPackageFiles": [

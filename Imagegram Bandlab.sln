@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Imagegram\src\Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S3", "Imagegram\src\Persistence\S3\S3.csproj", "{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Imagegram\src\Application\Application.csproj", "{805DA5FD-204E-4006-A6D0-E38E39619457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB8CB92-F064-4B02-A2BC-D0578DCA5AAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{805DA5FD-204E-4006-A6D0-E38E39619457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805DA5FD-204E-4006-A6D0-E38E39619457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805DA5FD-204E-4006-A6D0-E38E39619457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805DA5FD-204E-4006-A6D0-E38E39619457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

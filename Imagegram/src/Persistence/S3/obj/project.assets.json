@@ -185,9 +185,7 @@
         "net6.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
-        "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sSzonxh+VA4zSpfiX1tFSWRZ6dSbD5QYS7ea/VQWI/ydFAzm+4iz5bkQ+anSnNUce6DdolYeusRx7bQHAU4tjQ==",
+  "dgSpecHash": "9pJNt8lzmkBuBDpT6dsBmkoaknRXVgXsa2JdVi5b9Vsmt79NlSE1RvFkHWzaE1YcB/Rj6MEBz3Q9m/CKFP3Xpg==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,20 @@
     "/Users/belovanas/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.3.0/amazon.lambda.serialization.systemtextjson.2.3.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/awssdk.core/3.7.12.17/awssdk.core.3.7.12.17.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/awssdk.dynamodbv2/3.7.3.64/awssdk.dynamodbv2.3.7.3.64.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.2.0/microsoft.extensions.dependencyinjection.abstractions.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.extensions.objectpool/2.2.0/microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.extensions.options/2.2.0/microsoft.extensions.options.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.extensions.primitives/2.2.0/microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/system.componentmodel.annotations/4.5.0/system.componentmodel.annotations.4.5.0.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/system.memory/4.5.1/system.memory.4.5.1.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.1/system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
+    "/Users/belovanas/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.6/microsoft.netcore.app.crossgen2.osx-x64.6.0.6.nupkg.sha512"
   ],
   "logs": []

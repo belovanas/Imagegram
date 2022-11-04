@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Domain;
 using Dynamo.Abstractions;
 using Imagegram.Dto;
+using Imagegram.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,13 +20,9 @@ namespace Imagegram.Controllers
         }
 
         [HttpPost]
-        public Task Create([FromBody] UserCreateModel userCreateModel, CancellationToken ct)
+        public Task Create([FromBody] UserCreateRequest userCreateRequest, CancellationToken ct)
         {
-            var user = new User()
-            {
-                Name = userCreateModel.Name
-            };
-            return _userRepository.Add(user, ct);
+            return _userRepository.Add(userCreateRequest.Login, ct);
         }
     }
 }

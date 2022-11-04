@@ -6,6 +6,7 @@ namespace S3
 {
     public interface IImageUploader
     {
-        Task UploadFileAsync(Stream imageToUpload, string imageName, CancellationToken ct);
+        Task UploadFile(Stream fileToUpload, string fileKey, CancellationToken ct);
+        Task<Stream> GetFile(string fileKey, CancellationToken ct);
     }
 }

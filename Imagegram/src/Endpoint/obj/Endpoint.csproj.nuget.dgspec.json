@@ -4,6 +4,71 @@
     "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Endpoint/Endpoint.csproj": {}
   },
   "projects": {
+    "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/Application.csproj",
+        "projectName": "Application",
+        "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/Application.csproj",
+        "packagesPath": "/Users/belovanas/.nuget/packages/",
+        "outputPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/belovanas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Domain/Domain.csproj": {
+                "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Domain/Domain.csproj"
+              },
+              "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj": {
+                "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj"
+              },
+              "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj": {
+                "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/S3.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -23,9 +88,7 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -42,6 +105,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -80,14 +149,15 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/Application.csproj": {
+                "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Application/Application.csproj"
+              },
               "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj": {
                 "projectPath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj"
               },
@@ -171,9 +241,7 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -256,9 +324,7 @@
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
-          "https://artifactory.s.o3.ru/artifactory/api/nuget/v3/nuget-virtual-virtual": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
