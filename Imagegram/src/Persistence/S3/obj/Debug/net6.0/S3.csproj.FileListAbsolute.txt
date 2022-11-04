@@ -18,3 +18,4 @@
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/obj/Debug/net6.0/S3.pdb
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/obj/Debug/net6.0/S3.genruntimeconfig.cache
 /Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/obj/Debug/net6.0/ref/S3.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/S3/bin/Debug/net6.0/SixLabors.ImageSharp.dll

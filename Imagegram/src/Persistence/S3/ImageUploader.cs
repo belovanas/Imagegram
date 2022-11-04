@@ -1,9 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace S3
 {
@@ -19,11 +25,19 @@ namespace S3
         
         public async Task UploadFile(Stream fileToUpload, string fileKey, CancellationToken ct)
         {
-            var fileTransferUtility = new TransferUtility(_s3Client);
-            
-            await fileTransferUtility.UploadAsync(fileToUpload,
-                bucketName, fileKey, ct);
+            // var fileTransferUtility = new TransferUtility(_s3Client);
+            //
+            // await fileTransferUtility.UploadAsync(fileToUpload,
+            //     bucketName, fileKey, ct);
+
+           
+            using var bitmap = await Image.LoadAsync(fileToUpload, ct);
+            bitmap.Mutate(x => x.Resize(600, 600));
+            var stream = new MemoryStream();
+            await bitmap.SaveAsJpegAsync(stream, ct);
+            await _s3Client.UploadObjectFromStreamAsync("imagegram-bandlab-resized", fileKey, stream, new Dictionary<string, object>(), ct);
         }
+        
 
         public async Task<Stream> GetFile(string fileKey, CancellationToken ct)
         {

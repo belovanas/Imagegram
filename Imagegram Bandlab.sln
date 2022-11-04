@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S3", "Imagegram\src\Persist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Imagegram\src\Application\Application.csproj", "{805DA5FD-204E-4006-A6D0-E38E39619457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaImageResizer", "Imagegram\src\LambdaImageResizer\LambdaImageResizer.csproj", "{DC801910-22F6-4359-862F-3F335C2F8A56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{805DA5FD-204E-4006-A6D0-E38E39619457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{805DA5FD-204E-4006-A6D0-E38E39619457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{805DA5FD-204E-4006-A6D0-E38E39619457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC801910-22F6-4359-862F-3F335C2F8A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC801910-22F6-4359-862F-3F335C2F8A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC801910-22F6-4359-862F-3F335C2F8A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC801910-22F6-4359-862F-3F335C2F8A56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
