@@ -1,0 +1,10 @@
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/LambdaImageResizer.deps.json
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/LambdaImageResizer.runtimeconfig.json
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/LambdaImageResizer.pdb
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/Amazon.Lambda.Core.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/Amazon.Lambda.S3Events.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/Amazon.Lambda.Serialization.SystemTextJson.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/AWSSDK.Core.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/AWSSDK.S3.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/SixLabors.ImageSharp.dll
+/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/bin/Release/net6.0/publish/LambdaImageResizer.dll

@@ -70,7 +70,7 @@ namespace Imagegram
 
         private void ConfigureAwsInfrastructure(IServiceCollection services)
         {
-            AWSCredentials credentials = new BasicAWSCredentials("AKIAQOE77FP7PY6TYSGK", "cOzKWm+S6rHRaQnm//aP4efSXojOdzJlWlY7fyYu");
+            AWSCredentials credentials = new BasicAWSCredentials("", "");
             services.AddScoped<IAmazonDynamoDB>(_ => new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1));
             services.AddScoped<IDynamoDBContext>(sp => new DynamoDBContext(sp.GetRequiredService<IAmazonDynamoDB>()));
             services.AddScoped<IAmazonS3>(_ => new AmazonS3Client(credentials, RegionEndpoint.USEast1));

@@ -25,20 +25,12 @@ namespace S3
         
         public async Task UploadFile(Stream fileToUpload, string fileKey, CancellationToken ct)
         {
-            // var fileTransferUtility = new TransferUtility(_s3Client);
-            //
-            // await fileTransferUtility.UploadAsync(fileToUpload,
-            //     bucketName, fileKey, ct);
-
-           
-            using var bitmap = await Image.LoadAsync(fileToUpload, ct);
-            bitmap.Mutate(x => x.Resize(600, 600));
-            var stream = new MemoryStream();
-            await bitmap.SaveAsJpegAsync(stream, ct);
-            await _s3Client.UploadObjectFromStreamAsync("imagegram-bandlab-resized", fileKey, stream, new Dictionary<string, object>(), ct);
+            var fileTransferUtility = new TransferUtility(_s3Client);
+            
+            await fileTransferUtility.UploadAsync(fileToUpload,
+                bucketName, fileKey, ct);
         }
         
-
         public async Task<Stream> GetFile(string fileKey, CancellationToken ct)
         {
             var responseHeaders = new ResponseHeaderOverrides()
