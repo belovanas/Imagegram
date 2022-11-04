@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
 
 namespace S3
 {
     public class ImageUploader : IImageUploader
     {
-        private const string bucketName = "imagegram-bandlab";
+        private const string bucketNameToUpload = "imagegram-bandlab";
+        private const string bucketNameToGet = "imagegram-bandlab-resized";
         private static IAmazonS3 _s3Client;
 
         public ImageUploader(IAmazonS3 s3Client)
@@ -28,7 +23,7 @@ namespace S3
             var fileTransferUtility = new TransferUtility(_s3Client);
             
             await fileTransferUtility.UploadAsync(fileToUpload,
-                bucketName, fileKey, ct);
+                bucketNameToUpload, fileKey, ct);
         }
         
         public async Task<Stream> GetFile(string fileKey, CancellationToken ct)
@@ -40,7 +35,7 @@ namespace S3
             };
             var request = new GetObjectRequest()
             {
-                BucketName = bucketName,
+                BucketName = bucketNameToGet,
                 Key = fileKey,
                 ResponseHeaderOverrides = responseHeaders
             };

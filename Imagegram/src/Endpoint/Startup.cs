@@ -86,7 +86,6 @@ namespace Imagegram
 
         private void ConfigureApplication(IServiceCollection services)
         {
-            services.AddScoped<IPostService, PostService>();
             services.AddScoped<ICommentService, CommentService>();
         }
 

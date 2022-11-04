@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Net.Mime;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Abstractions;
 using Domain;
+using Dynamo.Abstractions;
 using Imagegram.Dto;
 using Imagegram.Extensions;
 using Imagegram.Requests;
@@ -13,42 +15,46 @@ using Microsoft.AspNetCore.Mvc;
 namespace Imagegram.Controllers
 {
     [Authorize]
-    [Route("post")]
+    [Route("posts")]
     public class PostController : ControllerBase
     {
         private const long MaxFileSize = 100L * 1024L * 1024L; // 100Mb
 
-        private readonly IPostService _postService;
+        private readonly IPostRepository _postRepository;
         private readonly ICommentService _commentService;
 
         public PostController(
-            IPostService postService, 
+            IPostRepository postRepository, 
             ICommentService commentService)
         {
-            _postService = postService;
+            _postRepository = postRepository;
             _commentService = commentService;
         }
 
         [RequestSizeLimit(MaxFileSize)]
         [RequestFormLimits(MultipartBodyLengthLimit = MaxFileSize)]
         [HttpPost]
-        public async Task Create(PostCreateRequest postCreateRequest, CancellationToken ct)
+        public async Task<ActionResult<string>> Create(PostCreateRequest postCreateRequest, CancellationToken ct)
         {
             var user = HttpContext.GetUser();
             var post = new Post()
             {
-                Info = new PostInfo()
-                {
-                    User = user,
-                    Caption = postCreateRequest.Caption
-                }
+                User = user,
+                Caption = postCreateRequest.Caption
             };
-            var image = postCreateRequest.Image.OpenReadStream();
-            await _postService.Add(post, image, ct);
+            await _postRepository.Add(post, ct);
+            return Ok(post.Id);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete([FromRoute] string id, CancellationToken ct)
+        {
+            await _postRepository.Delete(id, ct);
+            return Ok();
         }
         
         [HttpPost("{id}/comment")]
-        public async Task AddComment([FromRoute] string id, [FromBody] CommentCreateRequest commentRequest, CancellationToken ct)
+        public async Task<ActionResult<string>> AddComment([FromRoute] string id, [FromBody] CommentCreateRequest commentRequest, CancellationToken ct)
         {
             var user = HttpContext.GetUser();
             var comment = new Comment()
@@ -58,26 +64,46 @@ namespace Imagegram.Controllers
                 User = user
             };
             await _commentService.Add(comment, ct);
+            return Ok(comment.Id);
         }
         
         [HttpDelete("{id}/comment/{commentId}")]
-        public async Task AddComment([FromRoute] string id, [FromRoute] string commentId, CancellationToken ct)
+        public async Task<ActionResult> DeleteComment([FromRoute] string id, [FromRoute] string commentId, CancellationToken ct)
         {
             var user = HttpContext.GetUser();
             await _commentService.Delete(commentId, id, user, ct);
+            return Ok();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PostDto>> GetByIdV2([FromRoute] string id, CancellationToken ct)
+        public async Task<ActionResult<PostDto>> GetById([FromRoute] string id, CancellationToken ct)
         {
-            var post = await _postService.GetById(id, ct);
-           
-            var postDto = new PostDto
+            var post = await _postRepository.Get(id, ct);
+            var postDto = ToDto(post);
+            return Ok(postDto);
+        }
+
+        [HttpGet("all")]
+        public async Task<ActionResult<List<PostDto>>> GetAllPosts(
+            CancellationToken ct, 
+            [FromQuery] [Required] int limit = 5,
+            [FromQuery] [Required] int offset = 0)
+        {
+            var posts = await _postRepository.GetAll(ct);
+            var sortedPosts = posts.OrderByDescending(x => x.Comments.Count);
+            var pagedPosts = sortedPosts.Skip(offset).Take(limit);
+            var postDtos = pagedPosts.Select(ToShortenedDto).ToList();
+            return postDtos;
+        }
+
+        private PostDto ToDto(Post post)
+        {
+            return new()
             {
-                Id = post.Info.Id,
-                User = post.Info.User,
-                Caption = post.Info.Caption,
-                CreatedAt = post.Info.CreatedAt,
+                Id = post.Id,
+                User = post.User,
+                Caption = post.Caption,
+                CreatedAt = post.CreatedAt,
                 Comments = post.Comments.Select(comment => new CommentDto()
                 {
                     Id = comment.Id,
@@ -86,20 +112,27 @@ namespace Imagegram.Controllers
                     CreatedAt = comment.CreatedAt
                 }).ToList()
             };
-            return Ok(postDto);
         }
         
-        [HttpGet("{id}/image")]
-        public async Task<IActionResult> GetImageById([FromRoute] string id, CancellationToken ct)
+        private PostDto ToShortenedDto(Post post)
         {
-            var image = await _postService.GetImageForPost(id, ct);
-            var mimeType="image/jpeg";
-            Response.Headers.Add("Content-Disposition", new ContentDisposition
+            return new()
             {
-                Inline = true // false = prompt the user for downloading; true = browser to try to show the file inline
-            }.ToString());
-
-            return File(image, mimeType);
+                Id = post.Id,
+                User = post.User,
+                Caption = post.Caption,
+                CreatedAt = post.CreatedAt,
+                Comments = post.Comments
+                    .OrderByDescending(x => x.CreatedAt)
+                    .Take(2) // get last 2 comments
+                    .Select(comment => new CommentDto()
+                {
+                    Id = comment.Id,
+                    User = comment.User,
+                    Content = comment.Content,
+                    CreatedAt = comment.CreatedAt
+                }).ToList()
+            };
         }
     }
 }

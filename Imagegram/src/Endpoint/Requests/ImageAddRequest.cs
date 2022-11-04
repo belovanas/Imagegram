@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace Imagegram.Requests
 {
-    public class PostCreateRequest
+    public class ImageAddRequest
     {
         [Required]
-        public string Caption { get; set; }
+        public string PostId { get; init; }
+        [Required]
+        public IFormFile Image { get; init; }
     }
 }

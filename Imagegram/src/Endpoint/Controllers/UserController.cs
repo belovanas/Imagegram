@@ -1,16 +1,12 @@
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
 using Dynamo.Abstractions;
-using Imagegram.Dto;
 using Imagegram.Requests;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Imagegram.Controllers
 {
-    [Route("user")]
+    [Route("users")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
@@ -20,9 +16,10 @@ namespace Imagegram.Controllers
         }
 
         [HttpPost]
-        public Task Create([FromBody] UserCreateRequest userCreateRequest, CancellationToken ct)
+        public async Task<ActionResult> Create([FromBody] UserCreateRequest userCreateRequest, CancellationToken ct)
         {
-            return _userRepository.Add(userCreateRequest.Login, ct);
+            await _userRepository.Add(userCreateRequest.Login, ct);
+            return Ok();
         }
     }
 }

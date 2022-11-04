@@ -13,7 +13,7 @@ namespace Dynamo.Repositories
     public class CommentRepository : ICommentRepository
     {
         private readonly IAmazonDynamoDB _client;
-        private const string tableName = "Comments";
+        private const string tableName = "Posts";
 
         public CommentRepository(IAmazonDynamoDB client)
         {
@@ -28,15 +28,15 @@ namespace Dynamo.Repositories
                 Item = new Dictionary<string, AttributeValue>()
                 {
                     {
-                        "Id", new AttributeValue()
-                        {
-                            S = comment.Id
-                        }
-                    },
-                    {
                         "PostId", new AttributeValue()
                         {
                             S = comment.PostId
+                        }
+                    },
+                    {
+                        "EntityId", new AttributeValue()
+                        {
+                            S = $"comment#{comment.Id}"
                         }
                     },
                     {
@@ -70,43 +70,19 @@ namespace Dynamo.Repositories
                 Key = new Dictionary<string, AttributeValue>()
                 {
                     {
-                        "Id", new AttributeValue()
-                        {
-                            S = id
-                        }
-                    },
-                    {
                         "PostId", new AttributeValue()
                         {
                             S = postId
                         }
+                    },
+                    {
+                        "EntityId", new AttributeValue()
+                        {
+                            S = $"comment#{id}"
+                        }
                     }
                 }
             }, ct);
-        }
-
-        public async Task<List<Comment>> GetByPostId(string postId, CancellationToken ct)
-        {
-            var response = await _client.QueryAsync(new QueryRequest()
-            {
-                TableName = tableName,
-                KeyConditionExpression = "PostId = :postId",
-                ExpressionAttributeValues = new Dictionary<string, AttributeValue>{{":postId", new AttributeValue
-                {
-                    S = postId
-                }}}
-            }, ct);
-            
-            var comments = response.Items.Select(x => new Comment
-            {
-                Id = x["Id"].S,
-                PostId = x["PostId"].S,
-                User = x["User"].S,
-                Content = x["Content"].S,
-                CreatedAt = DateTime.ParseExact(x["CreatedAt"].S, "dd.MM.yyyy HH:mm:ss",
-                    System.Globalization.CultureInfo.InvariantCulture)
-            }).ToList();
-            return comments;
         }
         
         public async Task<Comment> Get(string id, string postId, CancellationToken ct)
@@ -117,14 +93,14 @@ namespace Dynamo.Repositories
                 Key = new Dictionary<string, AttributeValue>()
                 {
                     { 
-                        "Id", new AttributeValue 
-                        {
-                            S = id
-                        }},
-                    { 
-                        "PostId", new AttributeValue
+                        "PostId", new AttributeValue 
                         {
                             S = postId
+                        }},
+                    { 
+                        "EntityId", new AttributeValue
+                        {
+                            S = $"comment#{id}"
                         }}
                 }
             }, ct);
@@ -136,7 +112,7 @@ namespace Dynamo.Repositories
             
             return new Comment()
             {
-                Id = response.Item["Id"].S,
+                Id = response.Item["EntityId"].S.Split('#')[1],
                 PostId = response.Item["PostId"].S,
                 User = response.Item["User"].S,
                 Content = response.Item["Content"].S,

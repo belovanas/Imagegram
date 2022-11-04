@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
@@ -20,7 +21,7 @@ namespace Dynamo.Repositories
             _client = client;
         }
         
-        public async Task Add(PostInfo postInfo, CancellationToken ct)
+        public async Task Add(Post post, CancellationToken ct)
         {
             var request = new PutItemRequest()
             {
@@ -28,27 +29,33 @@ namespace Dynamo.Repositories
                 Item = new Dictionary<string, AttributeValue>()
                 {
                     {
-                        "Id", new AttributeValue()
+                        "PostId", new AttributeValue()
                         {
-                            S = postInfo.Id
+                            S = post.Id
+                        }
+                    },
+                    {
+                        "EntityId", new AttributeValue()
+                        {
+                            S = $"post#{post.Id}"
                         }
                     },
                     {
                         "User", new AttributeValue()
                         {
-                            S = postInfo.User
+                            S = post.User
                         }
                     },
                     {
                         "Caption", new AttributeValue()
                         {
-                            S = postInfo.Caption
+                            S = post.Caption
                         }
                     },
                     {
                         "CreatedAt", new AttributeValue()
                         {
-                            S = postInfo.CreatedAt.ToString()
+                            S = post.CreatedAt.ToString()
                         }
                     },
                 }
@@ -64,42 +71,83 @@ namespace Dynamo.Repositories
                 Key = new Dictionary<string, AttributeValue>()
                 {
                     {
-                        "Id", new AttributeValue()
+                        "PostId", new AttributeValue()
                         {
                             S = id
+                        }
+                    },
+                    {
+                        "EntityId", new AttributeValue()
+                        {
+                            S = $"post#{id}"
                         }
                     }
                 }
             }, ct);
         }
 
-        public async Task<PostInfo> Get(string id, CancellationToken ct)
+        public async Task<Post> Get(string id, CancellationToken ct)
         {
-            var response = await _client.GetItemAsync(new GetItemRequest
+            var response = await _client.QueryAsync(new QueryRequest()
             {
                 TableName = tableName,
-                Key = new Dictionary<string, AttributeValue>()
+                KeyConditionExpression = "PK = :postId",
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>{{":postId", new AttributeValue
                 {
-                    { "Id", new AttributeValue
-                    {
-                        S = id
-                    }}
-                }
+                    S = id
+                }}}
             }, ct);
-            
-            if (!response.IsItemSet)
+
+            if (!response.Items.Any())
             {
-                throw new Exception($"Post {id} isn't found");
+                throw new Exception($"Post with id {id} isn't found");
+            }
+
+            var post = MapPosts(response.Items);
+            return post.Single();
+        }
+
+        public async Task<List<Post>> GetAll(CancellationToken ct)
+        {
+            var response = await _client.ScanAsync(new ScanRequest()
+            {
+                TableName = tableName
+            }, ct);
+
+            return MapPosts(response.Items);
+        }
+
+        private List<Post> MapPosts(List<Dictionary<string, AttributeValue>> items)
+        {
+            var commentRaws = items.Where(x => x["EntityId"].S.StartsWith("comment"));
+            var comments = commentRaws.Select(comment => new Comment()
+            {
+                Id = comment["EntityId"].S.Split('#')[1],
+                PostId = comment["PostId"].S,
+                Content = comment["Content"].S,
+                User = comment["User"].S,
+                CreatedAt = DateTime.ParseExact(comment["CreatedAt"].S, "dd.MM.yyyy HH:mm:ss",
+                    System.Globalization.CultureInfo.InvariantCulture)
+            }).ToList();
+
+            var postRaws = items.Where(x => x["EntityId"].S.StartsWith("post"));
+            var postModels = postRaws.Select(post => new Post()
+            {
+                Id = post["PostId"].S,
+                Caption = post["Caption"].S,
+                User = post["User"].S,
+                CreatedAt = DateTime.ParseExact(post["CreatedAt"].S, "dd.MM.yyyy HH:mm:ss",
+                    System.Globalization.CultureInfo.InvariantCulture),
+                Comments = comments
+            }).ToList();
+            var postModelsMap = postModels.ToDictionary(x => x.Id, x => x);
+
+            foreach (var commentByPost in comments.GroupBy(x => x.PostId))
+            {
+                postModelsMap[commentByPost.Key].Comments = commentByPost.ToList();
             }
             
-            return new PostInfo
-            {
-                Id = response.Item["Id"].S,
-                User = response.Item["User"].S,
-                Caption = response.Item["Caption"].S,
-                CreatedAt = DateTime.ParseExact(response.Item["CreatedAt"].S, "dd.MM.yyyy HH:mm:ss",
-                    System.Globalization.CultureInfo.InvariantCulture)
-            };
+            return postModels;
         }
     }
 }
