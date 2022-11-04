@@ -25,7 +25,7 @@ namespace Application
             _commentRepository = commentRepository;
         }
 
-        public async Task Save(Post post, Stream image, CancellationToken ct)
+        public async Task Add(Post post, Stream image, CancellationToken ct)
         {
             await _postRepository.Add(post.Info, ct);
             try
@@ -46,7 +46,6 @@ namespace Application
             return new Post
             {
                 Info = postInfo,
-                Image = image,
                 Comments = comments
             };
         }

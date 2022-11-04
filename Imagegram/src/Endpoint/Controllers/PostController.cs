@@ -19,10 +19,14 @@ namespace Imagegram.Controllers
         private const long MaxFileSize = 100L * 1024L * 1024L; // 100Mb
 
         private readonly IPostService _postService;
+        private readonly ICommentService _commentService;
 
-        public PostController(IPostService postService)
+        public PostController(
+            IPostService postService, 
+            ICommentService commentService)
         {
             _postService = postService;
+            _commentService = commentService;
         }
 
         [RequestSizeLimit(MaxFileSize)]
@@ -40,10 +44,30 @@ namespace Imagegram.Controllers
                 }
             };
             var image = postCreateRequest.Image.OpenReadStream();
-            await _postService.Save(post, image, ct);
+            await _postService.Add(post, image, ct);
+        }
+        
+        [HttpPost("{id}/comment")]
+        public async Task AddComment([FromRoute] string id, [FromBody] CommentCreateRequest commentRequest, CancellationToken ct)
+        {
+            var user = HttpContext.GetUser();
+            var comment = new Comment()
+            {
+                PostId = id,
+                Content = commentRequest.Content,
+                User = user
+            };
+            await _commentService.Add(comment, ct);
+        }
+        
+        [HttpDelete("{id}/comment/{commentId}")]
+        public async Task AddComment([FromRoute] string id, [FromRoute] string commentId, CancellationToken ct)
+        {
+            var user = HttpContext.GetUser();
+            await _commentService.Delete(commentId, id, user, ct);
         }
 
-        [HttpGet("v2/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<PostDto>> GetByIdV2([FromRoute] string id, CancellationToken ct)
         {
             var post = await _postService.GetById(id, ct);
@@ -58,7 +82,6 @@ namespace Imagegram.Controllers
                 {
                     Id = comment.Id,
                     User = comment.User,
-                    PostId = comment.PostId,
                     Content = comment.Content,
                     CreatedAt = comment.CreatedAt
                 }).ToList()
@@ -66,8 +89,7 @@ namespace Imagegram.Controllers
             return Ok(postDto);
         }
         
-        
-        [HttpGet("image/{id}")]
+        [HttpGet("{id}/image")]
         public async Task<IActionResult> GetImageById([FromRoute] string id, CancellationToken ct)
         {
             var image = await _postService.GetImageForPost(id, ct);

@@ -10,5 +10,6 @@ namespace Dynamo.Abstractions
         Task Add(Comment comment, CancellationToken ct);
         Task Delete(string id, string postId, CancellationToken ct);
         Task<List<Comment>> GetByPostId(string postId, CancellationToken ct);
+        Task<Comment> Get(string id, string postId, CancellationToken ct);
     }
 }

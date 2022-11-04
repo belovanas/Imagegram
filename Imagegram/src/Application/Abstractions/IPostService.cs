@@ -7,7 +7,7 @@ namespace Application.Abstractions
 {
     public interface IPostService
     {
-        Task Save(Post post, Stream image, CancellationToken ct);
+        Task Add(Post post, Stream image, CancellationToken ct);
         Task<Post> GetById(string id, CancellationToken ct);
         Task<Stream> GetImageForPost(string id, CancellationToken ct);
     }

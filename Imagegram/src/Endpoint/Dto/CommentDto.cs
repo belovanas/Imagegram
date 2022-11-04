@@ -10,8 +10,6 @@ namespace Imagegram.Dto
         [Required]
         public string User { get; init; }
         [Required]
-        public string PostId { get; init; }
-        [Required]
         public string Content { get; init; }
         [Required]
         public DateTime CreatedAt { get; init; }
