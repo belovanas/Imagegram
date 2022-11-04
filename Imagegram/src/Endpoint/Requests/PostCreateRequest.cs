@@ -5,7 +5,8 @@ namespace Imagegram.Requests
 {
     public class PostCreateRequest
     {
-        [Required]
-        public string Caption { get; set; }
+        [Required] public string Caption { get; set; }
+
+        [Required] public IFormFile Image { get; init; }
     }
 }

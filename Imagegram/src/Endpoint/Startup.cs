@@ -56,11 +56,11 @@ namespace Imagegram
                     }
                 });
             });
-        
+
             services.AddAuthentication("Test")
                 .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", _ => { });
             services.AddHttpContextAccessor();
- 
+
             services.AddAuthorization();
 
             ConfigureAwsInfrastructure(services);
@@ -70,7 +70,8 @@ namespace Imagegram
 
         private void ConfigureAwsInfrastructure(IServiceCollection services)
         {
-            AWSCredentials credentials = new BasicAWSCredentials("", "");
+            AWSCredentials credentials =
+                new BasicAWSCredentials("", "");
             services.AddScoped<IAmazonDynamoDB>(_ => new AmazonDynamoDBClient(credentials, RegionEndpoint.USEast1));
             services.AddScoped<IDynamoDBContext>(sp => new DynamoDBContext(sp.GetRequiredService<IAmazonDynamoDB>()));
             services.AddScoped<IAmazonS3>(_ => new AmazonS3Client(credentials, RegionEndpoint.USEast1));
@@ -86,16 +87,14 @@ namespace Imagegram
 
         private void ConfigureApplication(IServiceCollection services)
         {
+            services.AddScoped<IPostService, PostService>();
             services.AddScoped<ICommentService, CommentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 
@@ -107,10 +106,11 @@ namespace Imagegram
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
-                });
+                endpoints.MapGet("/",
+                    async context =>
+                    {
+                        await context.Response.WriteAsync("Welcome to running ASP.NET Core on AWS Lambda");
+                    });
             });
 
             app.UseSwagger();

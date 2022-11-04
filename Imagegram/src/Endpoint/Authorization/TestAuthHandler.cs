@@ -30,16 +30,13 @@ namespace Imagegram.Authorization
             _httpContextAccessor = httpContextAccessor;
             _userRepository = userRepository;
         }
- 
+
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             HttpContext httpContext = _httpContextAccessor.HttpContext; // Access context here
             var authorizationHeader = httpContext.Request.Headers["Authorization"].FirstOrDefault();
-            if (string.IsNullOrEmpty(authorizationHeader))
-            {
-                return AuthenticateResult.Fail("Auth header wasn't found");
-            }
-            
+            if (string.IsNullOrEmpty(authorizationHeader)) return AuthenticateResult.Fail("Auth header wasn't found");
+
             string encodedUsernamePassword = authorizationHeader.Substring("Basic ".Length).Trim();
             Encoding encoding = Encoding.GetEncoding("iso-8859-1");
             string usernamePassword = encoding.GetString(Convert.FromBase64String(encodedUsernamePassword));
@@ -47,11 +44,8 @@ namespace Imagegram.Authorization
             var username = usernamePassword.Substring(0, separatorIndex);
 
             var doesExist = await _userRepository.DoesExist(username, CancellationToken.None);
-            if (!doesExist)
-            {
-                return AuthenticateResult.Fail($"User {username} wasn't found. Please, register");
-            }
-            
+            if (!doesExist) return AuthenticateResult.Fail($"User {username} wasn't found. Please, register");
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, username)
@@ -59,7 +53,7 @@ namespace Imagegram.Authorization
             var identity = new ClaimsIdentity(claims, "Test");
             var principal = new ClaimsPrincipal(identity);
             var ticket = new AuthenticationTicket(principal, "Test");
- 
+
             return AuthenticateResult.Success(ticket);
         }
     }

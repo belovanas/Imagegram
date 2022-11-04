@@ -10,7 +10,7 @@ namespace Imagegram.Controllers
 {
     [Authorize]
     [Route("images")]
-    public class ImageController: ControllerBase
+    public class ImageController : ControllerBase
     {
         private readonly IImageUploader _imageUploader;
 
@@ -21,7 +21,7 @@ namespace Imagegram.Controllers
 
         [HttpPost]
         public async Task<ActionResult> AddForPost(ImageAddRequest request, CancellationToken ct)
-        { 
+        {
             await _imageUploader.UploadFile(request.Image.OpenReadStream(), request.PostId, ct);
             return Ok();
         }
@@ -30,7 +30,7 @@ namespace Imagegram.Controllers
         public async Task<IActionResult> GetById([FromRoute] string postId, CancellationToken ct)
         {
             var image = await _imageUploader.GetFile(postId, ct);
-            var mimeType="image/jpeg";
+            var mimeType = "image/jpeg";
             Response.Headers.Add("Content-Disposition", new ContentDisposition
             {
                 Inline = true // false = prompt the user for downloading; true = browser to try to show the file inline

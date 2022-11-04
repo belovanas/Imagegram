@@ -10,10 +10,7 @@ namespace Imagegram.Extensions
         internal static string GetUser(this HttpContext context)
         {
             var user = context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
-            if (string.IsNullOrEmpty(user))
-            {
-                throw new ApplicationException("Couldn't get id of user from context");
-            }
+            if (string.IsNullOrEmpty(user)) throw new ApplicationException("Couldn't get id of user from context");
 
             return user;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,23 +18,48 @@ namespace S3
         {
             _s3Client = s3Client;
         }
-        
+
         public async Task UploadFile(Stream fileToUpload, string fileKey, CancellationToken ct)
         {
             var fileTransferUtility = new TransferUtility(_s3Client);
-            
+
             await fileTransferUtility.UploadAsync(fileToUpload,
                 bucketNameToUpload, fileKey, ct);
         }
-        
+
+        public async Task DeleteFile(string fileKey, CancellationToken ct)
+        {
+            await _s3Client.DeleteObjectAsync(new DeleteObjectRequest
+            {
+                BucketName = bucketNameToUpload,
+                Key = fileKey
+            }, ct);
+            await _s3Client.DeleteObjectAsync(new DeleteObjectRequest
+            {
+                BucketName = bucketNameToGet,
+                Key = fileKey
+            }, ct);
+        }
+
+        public string GetLinkToFile(string fileKey)
+        {
+            return _s3Client.GetPreSignedURL(new GetPreSignedUrlRequest
+            {
+                BucketName = bucketNameToGet,
+                Key = fileKey,
+                ContentType = "image/jpeg",
+                Expires = DateTime.Now.AddHours(1)
+            });
+        }
+
         public async Task<Stream> GetFile(string fileKey, CancellationToken ct)
         {
-            var responseHeaders = new ResponseHeaderOverrides()
+            var responseHeaders = new ResponseHeaderOverrides
             {
                 CacheControl = "No-cache",
                 ContentType = "image/jpeg"
             };
-            var request = new GetObjectRequest()
+            var request = new GetObjectRequest
             {
                 BucketName = bucketNameToGet,
                 Key = fileKey,

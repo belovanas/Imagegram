@@ -10,8 +10,8 @@ namespace Dynamo.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IAmazonDynamoDB _client;
         private const string tableName = "Users";
+        private readonly IAmazonDynamoDB _client;
 
         public UserRepository(IAmazonDynamoDB client)
         {
@@ -20,19 +20,19 @@ namespace Dynamo.Repositories
 
         public async Task Add(string login, CancellationToken ct)
         {
-            var request = new PutItemRequest()
+            var request = new PutItemRequest
             {
                 TableName = tableName,
-                Item = new Dictionary<string, AttributeValue>()
+                Item = new Dictionary<string, AttributeValue>
                 {
                     {
-                        "Login", new AttributeValue()
+                        "Login", new AttributeValue
                         {
                             S = login
                         }
                     },
                     {
-                        "CreatedAt", new AttributeValue()
+                        "CreatedAt", new AttributeValue
                         {
                             S = DateTime.Now.ToString()
                         }
@@ -47,12 +47,14 @@ namespace Dynamo.Repositories
             var response = await _client.GetItemAsync(new GetItemRequest
             {
                 TableName = tableName,
-                Key = new Dictionary<string, AttributeValue>()
+                Key = new Dictionary<string, AttributeValue>
                 {
-                    { "Login", new AttributeValue
                     {
-                        S = login
-                    }}
+                        "Login", new AttributeValue
+                        {
+                            S = login
+                        }
+                    }
                 }
             }, ct);
             return response.IsItemSet;

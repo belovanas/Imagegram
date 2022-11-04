@@ -4,7 +4,6 @@ namespace Imagegram.Requests
 {
     public class CommentCreateRequest
     {
-        [Required]
-        public string Content { get; set; }
+        [Required] public string Content { get; set; }
     }
 }

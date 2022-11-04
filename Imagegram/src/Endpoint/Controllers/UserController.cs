@@ -10,6 +10,7 @@ namespace Imagegram.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+
         public UserController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
