@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9pJNt8lzmkBuBDpT6dsBmkoaknRXVgXsa2JdVi5b9Vsmt79NlSE1RvFkHWzaE1YcB/Rj6MEBz3Q9m/CKFP3Xpg==",
+  "dgSpecHash": "dZjZVojAuK75fw27w6nlZPTqPmF5vtTnfaOg+6yK0BheU53ustXQXpDLYa3L4I3pyC9uRsvBbweQ9WQBOKRLZw==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/Persistence/Dynamo/Dynamo.csproj",
   "expectedPackageFiles": [
@@ -22,8 +22,7 @@
     "/Users/belovanas/.nuget/packages/system.componentmodel.annotations/4.5.0/system.componentmodel.annotations.4.5.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/system.memory/4.5.1/system.memory.4.5.1.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.1/system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.6/microsoft.netcore.app.crossgen2.osx-x64.6.0.6.nupkg.sha512"
+    "/Users/belovanas/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

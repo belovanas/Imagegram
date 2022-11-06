@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j7P4JC4gVr/XcyauNPn6Ssw8vKp6JYvn/UJXdSPXopdLQ0i3wc2V++s5rGShZdT2CvGnHnjE1Ny3f9C2t+EuKw==",
+  "dgSpecHash": "zK5ScEu1ZpMb1Ar8PALcmjj8xgsitm7z2oMwlqxFzULiId/MRnE6pRIZgdskSZnRJ7FHCByW5E89UI2kph34VA==",
   "success": true,
   "projectFilePath": "/Users/belovanas/repos/Imagegram Bandlab/Imagegram/src/LambdaImageResizer/LambdaImageResizer.csproj",
   "expectedPackageFiles": [
@@ -12,10 +12,7 @@
     "/Users/belovanas/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/sixlabors.imagesharp/2.1.3/sixlabors.imagesharp.2.1.3.nupkg.sha512",
     "/Users/belovanas/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.6/microsoft.netcore.app.runtime.linux-x64.6.0.6.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.6/microsoft.aspnetcore.app.runtime.linux-x64.6.0.6.nupkg.sha512",
-    "/Users/belovanas/.nuget/packages/microsoft.netcore.app.crossgen2.osx-x64/6.0.6/microsoft.netcore.app.crossgen2.osx-x64.6.0.6.nupkg.sha512"
+    "/Users/belovanas/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
